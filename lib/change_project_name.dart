@@ -20,8 +20,6 @@ Future<List<File>> findDartFiles(Directory dir) async {
 
 /// Validate project name according to Dart package naming conventions
 bool isValidPackageName(String name) {
-  // Dart package names must be lowercase, can contain underscores and numbers
-  // Must start with a letter or underscore
   final regex = RegExp(r'^[a-z_][a-z0-9_]*$');
   return regex.hasMatch(name) && !name.startsWith('_');
 }
@@ -55,50 +53,5 @@ Future<void> updatePackageConfig(String oldName, String newName) async {
     }
   } catch (e) {
     print('⚠️  Warning: Could not update .dart_tool/package_config.json: $e');
-  }
-}
-
-/// Update Android package name in android/app/build.gradle
-Future<void> updateAndroidPackageName(String oldName, String newName) async {
-  final buildGradle = File('android/app/build.gradle');
-  if (!buildGradle.existsSync()) return;
-
-  try {
-    final content = await buildGradle.readAsString();
-    if (content.contains('applicationId')) {
-      // This is a simple approach - in practice you might want more sophisticated parsing
-      final updated = content.replaceAll(
-        RegExp(r'applicationId\s+"[^"]*"'),
-        'applicationId "com.example.$newName"',
-      );
-
-      if (updated != content) {
-        await buildGradle.writeAsString(updated);
-        print('✅ Updated: android/app/build.gradle');
-      }
-    }
-  } catch (e) {
-    print('⚠️  Warning: Could not update Android configuration: $e');
-  }
-}
-
-/// Update iOS bundle identifier in ios/Runner.xcodeproj/project.pbxproj
-Future<void> updateIOSBundleId(String oldName, String newName) async {
-  final pbxproj = File('ios/Runner.xcodeproj/project.pbxproj');
-  if (!pbxproj.existsSync()) return;
-
-  try {
-    final content = await pbxproj.readAsString();
-    final updated = content.replaceAll(
-      RegExp(r'PRODUCT_BUNDLE_IDENTIFIER = [^;]*;'),
-      'PRODUCT_BUNDLE_IDENTIFIER = com.example.$newName;',
-    );
-
-    if (updated != content) {
-      await pbxproj.writeAsString(updated);
-      print('✅ Updated: ios/Runner.xcodeproj/project.pbxproj');
-    }
-  } catch (e) {
-    print('⚠️  Warning: Could not update iOS configuration: $e');
   }
 }

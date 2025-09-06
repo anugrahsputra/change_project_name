@@ -130,7 +130,7 @@ Future<void> main(List<String> arguments) async {
   }
 
   final isDryRun = argResults['dry-run'] as bool;
-  final skipPlatform = argResults['skip-platform'] as bool;
+  // final skipPlatform = argResults['skip-platform'] as bool;
   final isVerbose = argResults['verbose'] as bool;
 
   if (isDryRun) {
@@ -156,7 +156,6 @@ Future<void> main(List<String> arguments) async {
     // Update package imports
     print('\n🔄 ${isDryRun ? 'Analyzing' : 'Updating'} Dart imports...');
     final files = await change_project_name.findDartFiles(currentDir);
-
     int changedFiles = 0;
     for (final file in files) {
       final content = await file.readAsString();
@@ -187,30 +186,6 @@ Future<void> main(List<String> arguments) async {
       if (configFile.existsSync()) {
         print('✅ Would update: .dart_tool/package_config.json');
       }
-    }
-
-    // Update platform-specific configurations
-    if (!skipPlatform) {
-      print(
-        '\n🔄 ${isDryRun ? 'Analyzing' : 'Updating'} platform configurations...',
-      );
-      if (!isDryRun) {
-        await change_project_name.updateAndroidPackageName(oldName, newName);
-        await change_project_name.updateIOSBundleId(oldName, newName);
-      } else {
-        // Check what would be updated
-        final androidFile = File('android/app/build.gradle');
-        final iosFile = File('ios/Runner.xcodeproj/project.pbxproj');
-
-        if (androidFile.existsSync()) {
-          print('✅ Would update: android/app/build.gradle');
-        }
-        if (iosFile.existsSync()) {
-          print('✅ Would update: ios/Runner.xcodeproj/project.pbxproj');
-        }
-      }
-    } else {
-      print('\n⏭️  Skipping platform-specific configuration updates');
     }
 
     print(
