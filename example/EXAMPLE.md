@@ -21,9 +21,6 @@ change-project-name --interactive
 # Dry run to preview changes
 change-project-name --dry-run my_shitty_app
 
-# Skip platform-specific updates
-change-project-name --skip-platform my_shitty_app
-
 # Verbose output
 change-project-name --verbose my_shitty_app
 ```

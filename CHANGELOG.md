@@ -28,3 +28,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updates iOS bundle identifier
 - Validates package names according to Dart conventions
 - Comprehensive error handling and user feedback
+
+## [1.0.1] - 2025-09-06
+
+### Removed
+- Dropped support for `--skip-platform` flag
+- Removed automatic iOS bundle identifier updates

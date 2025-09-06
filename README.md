@@ -60,7 +60,6 @@ change-project-name --help
 | `--value` | `-v` | Specify the new project name |
 | `--interactive` | `-i` | Run in interactive mode |
 | `--dry-run` | `-d` | Preview changes without applying |
-| `--skip-platform` | | Skip Android/iOS configuration updates |
 | `--verbose` | | Show detailed output |
 | `--help` | `-h` | Show help message |
 
@@ -69,8 +68,6 @@ change-project-name --help
 - ✅ `pubspec.yaml` - Project name
 - ✅ All `.dart` files - Package import statements
 - ✅ `.dart_tool/package_config.json` - Package configuration
-- ✅ `android/app/build.gradle` - Android application ID
-- ✅ `ios/Runner.xcodeproj/project.pbxproj` - iOS bundle identifier
 
 ## Example
 
@@ -88,10 +85,6 @@ $ change-project-name awesome_app
 ✅ Updated: ./lib/main.dart
 ✅ Updated: ./lib/src/app.dart
 ✅ Updated: ./.dart_tool/package_config.json
-
-🔄 Updating platform configurations...
-✅ Updated: android/app/build.gradle
-✅ Updated: ios/Runner.xcodeproj/project.pbxproj
 
 🎉 Done! Project successfully renamed to "awesome_app".
 📌 2 Dart file(s) updated.
