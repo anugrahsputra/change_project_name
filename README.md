@@ -2,7 +2,7 @@
 
 [![pub package](https://img.shields.io/pub/v/change_project_name.svg)](https://pub.dev/packages/change_project_name)
 
-A powerful CLI tool to rename Flutter/Dart projects and automatically update all package references, imports, and platform-specific configurations.
+A powerful CLI tool to rename Flutter/Dart projects and automatically update all package references, and imports.
 
 ## Features
 
