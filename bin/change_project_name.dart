@@ -34,12 +34,6 @@ Future<void> main(List<String> arguments) async {
       defaultsTo: false,
     )
     ..addFlag(
-      'skip-platform',
-      negatable: false,
-      help: 'Skip updating platform-specific files (Android/iOS)',
-      defaultsTo: false,
-    )
-    ..addFlag(
       'verbose',
       negatable: false,
       help: 'Show detailed output',
@@ -130,7 +124,6 @@ Future<void> main(List<String> arguments) async {
   }
 
   final isDryRun = argResults['dry-run'] as bool;
-  // final skipPlatform = argResults['skip-platform'] as bool;
   final isVerbose = argResults['verbose'] as bool;
 
   if (isDryRun) {
@@ -222,5 +215,4 @@ void _showUsage(ArgParser parser) {
   print('  change-project-name my_new_app');
   print('  change-project-name --interactive');
   print('  change-project-name --dry-run --value my_new_app');
-  print('  change-project-name --skip-platform my_new_app');
 }
