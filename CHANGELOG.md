@@ -34,3 +34,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Dropped support for `--skip-platform` flag
 - Removed automatic iOS bundle identifier updates
+
+## [1.0.2] - 2025-09-07
+
+### Added
+- Added example project
+- Added support for `.dart_tool/package_config.json` file
+
+### Removed
+- Removed support for `--skip-platform` flag
