@@ -1,45 +1,27 @@
-# Changelog
+## [unreleased]
 
-All notable changes to this project will be documented in this file.
+### 🚀 Features
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+- Add flutter project example
 
-## [1.0.0] - 2025-09-06
+### 🚜 Refactor
 
-### Added
-- Initial release of change_project_name CLI tool
-- Automatic renaming of Flutter/Dart project names
-- Update all package imports and references
-- Support for command-line arguments with `--value` flag
-- Interactive mode with `--interactive` flag
-- Dry-run mode to preview changes with `--dry-run`
-- Platform-specific configuration updates (Android/iOS)
-- Comprehensive validation of package names
-- Support for skipping platform updates with `--skip-platform`
-- Verbose output mode with `--verbose`
-- Help documentation with `--help`
+- Enhance documentation and improve argument parsing in CLI tool
 
-### Features
-- Recursively finds and updates all Dart files
-- Updates pubspec.yaml with new project name
-- Updates .dart_tool/package_config.json
-- Updates Android bundle identifier
-- Updates iOS bundle identifier
-- Validates package names according to Dart conventions
-- Comprehensive error handling and user feedback
+### ⚙️ Miscellaneous Tasks
 
+- Update version to 1.0.2 and enhance CHANGELOG with new features and removals
 ## [1.0.1] - 2025-09-06
 
-### Removed
-- Dropped support for `--skip-platform` flag
-- Removed automatic iOS bundle identifier updates
+### 🚜 Refactor
 
-## [1.0.2] - 2025-09-07
+- Remove unnecessary code
 
-### Added
-- Added example project
-- Added support for `.dart_tool/package_config.json` file
+### 📚 Documentation
 
-### Removed
-- Removed support for `--skip-platform` flag
+- Update documentation
+- Update
+
+### ⚙️ Miscellaneous Tasks
+
+- Bump version
