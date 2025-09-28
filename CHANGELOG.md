@@ -1,3 +1,12 @@
+## [unreleased]
+
+### 📚 Documentation
+
+- Add initial CHANGELOG.md for tracking changes
+
+### ⚙️ Miscellaneous Tasks
+
+- Update CHANGELOG for version 1.0.2 and enhance documentation
 ## [1.0.2] - 2025-09-21
 
 ### 🚀 Features
