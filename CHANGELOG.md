@@ -1,4 +1,4 @@
-## [unreleased]
+## [1.0.2] - 2025-09-21
 
 ### 🚀 Features
 
@@ -7,6 +7,10 @@
 ### 🚜 Refactor
 
 - Enhance documentation and improve argument parsing in CLI tool
+
+### 📚 Documentation
+
+- Enhance changelog format and add cliff.toml configuration
 
 ### ⚙️ Miscellaneous Tasks
 
