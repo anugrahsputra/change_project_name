@@ -1,4 +1,18 @@
-## [unreleased]
+## [1.0.4] - 2025-10-04
+
+### 📚 Documentation
+
+- Update cliff.toml'
+
+### ⚙️ Miscellaneous Tasks
+
+- Bump version to 1.0.4
+
+### 🚀 Features
+
+- Add flutter clean and flutter pub get commands after successfully change project name
+
+## [1.0.3] - 2025-09-28
 
 ### 📚 Documentation
 
@@ -7,6 +21,8 @@
 ### ⚙️ Miscellaneous Tasks
 
 - Update CHANGELOG for version 1.0.2 and enhance documentation
+- Update version to 1.0.3 and enhance CHANGELOG with documentation improvements
+
 ## [1.0.2] - 2025-09-21
 
 ### 🚀 Features
@@ -24,6 +40,7 @@
 ### ⚙️ Miscellaneous Tasks
 
 - Update version to 1.0.2 and enhance CHANGELOG with new features and removals
+
 ## [1.0.1] - 2025-09-06
 
 ### 🚜 Refactor
