@@ -84,12 +84,45 @@ Future<void> updatePackageConfig(String oldName, String newName) async {
         await configFile.writeAsString(
           const JsonEncoder.withIndent('  ').convert(jsonContent),
         );
+
         // Print a success message.
         print('✅ Updated: .dart_tool/package_config.json');
+
+        // run flutter clean and flutter pub get
+        await runPubGet();
       }
     }
   } catch (e) {
     // Print a warning if an error occurs during the update.
     print('⚠️  Warning: Could not update .dart_tool/package_config.json: $e');
   }
+}
+
+Future<void> runPubGet() async {
+  print('\n🚀 Running flutter clean...');
+  final cleanExitCode = await runCommand(['clean']);
+
+  if (cleanExitCode == 0) {
+    print('/n🚀 Running flutter pub get...');
+    await runCommand(['pub', 'get']);
+  }
+}
+
+Future<int> runCommand(List<String> args) async {
+  print('Running command: flutter ${args.join(' ')}');
+
+  final process = await Process.start('flutter', args);
+
+  process.stdout.transform(utf8.decoder).listen(stdout.write);
+  process.stderr.transform(utf8.decoder).listen(stderr.write);
+
+  final exitCode = await process.exitCode;
+
+  if (exitCode != 0) {
+    stderr.writeln('Command failed with exit code: $exitCode');
+  } else {
+    print('');
+  }
+
+  return exitCode;
 }

@@ -1,8 +1,7 @@
 import 'dart:io';
 
 import 'package:args/args.dart';
-import 'package:change_project_name/change_project_name.dart'
-    as change_project_name;
+import 'package:change_project_name/change_project_name.dart' as cpn;
 import 'package:yaml/yaml.dart';
 
 /// The main entry point for the project name changer CLI tool.
@@ -14,7 +13,6 @@ import 'package:yaml/yaml.dart';
 ///
 /// Each line is documented to help developers understand the flow and logic.
 Future<void> main(List<String> arguments) async {
-  /// Create an argument parser with all supported options and flags.
   final parser = _argParser();
 
   ArgResults argResults;
@@ -100,7 +98,7 @@ Future<void> main(List<String> arguments) async {
   }
 
   /// Validate the new package name using Dart package naming conventions.
-  if (!change_project_name.isValidPackageName(newName)) {
+  if (!cpn.isValidPackageName(newName)) {
     print('❌ Invalid package name: "$newName"');
     print(
       '   Package names must be lowercase, can contain underscores and numbers,',
@@ -157,7 +155,7 @@ Future<void> main(List<String> arguments) async {
     print('\n🔄 ${isDryRun ? 'Analyzing' : 'Updating'} Dart imports...');
 
     /// Find all Dart files in the project.
-    final files = await change_project_name.findDartFiles(currentDir);
+    final files = await cpn.findDartFiles(currentDir);
 
     /// Counter for the number of changed files.
     int changedFiles = 0;
@@ -200,7 +198,7 @@ Future<void> main(List<String> arguments) async {
     // Update .dart_tool/package_config.json if exists
     if (!isDryRun) {
       /// Actually update the package_config.json file if not in dry-run.
-      await change_project_name.updatePackageConfig(oldName, newName);
+      await cpn.updatePackageConfig(oldName, newName);
     } else {
       /// In dry-run, just notify if the file exists and would be updated.
       final configFile = File('.dart_tool/package_config.json');
@@ -217,16 +215,7 @@ Future<void> main(List<String> arguments) async {
       '📌 $changedFiles Dart file(s) ${isDryRun ? 'would be' : ''} updated.',
     );
 
-    if (!isDryRun) {
-      /// Print next steps for the user after a real rename.
-      print('\n🚀 Next steps:');
-      print('   1. flutter clean && flutter pub get');
-      print('   2. Review and update any remaining references manually');
-      print(
-        '   3. Update app display names in platform-specific files if needed',
-      );
-    } else {
-      /// Remind user to run without --dry-run to apply changes.
+    if (isDryRun) {
       print('\n💡 Run without --dry-run to make these changes');
     }
   } catch (e) {
