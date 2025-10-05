@@ -55,13 +55,13 @@ change-project-name --help
 
 ### Command Line Options
 
-| Option | Short | Description |
-|--------|-------|-------------|
-| `--value` | `-v` | Specify the new project name |
-| `--interactive` | `-i` | Run in interactive mode |
-| `--dry-run` | `-d` | Preview changes without applying |
-| `--verbose` | | Show detailed output |
-| `--help` | `-h` | Show help message |
+| Option          | Short | Description                      |
+| --------------- | ----- | -------------------------------- |
+| `--value`       | `-v`  | Specify the new project name     |
+| `--interactive` | `-i`  | Run in interactive mode          |
+| `--dry-run`     | `-d`  | Preview changes without applying |
+| `--verbose`     |       | Show detailed output             |
+| `--help`        | `-h`  | Show help message                |
 
 ## What Gets Updated
 
@@ -89,10 +89,6 @@ $ change-project-name awesome_app
 🎉 Done! Project successfully renamed to "awesome_app".
 📌 2 Dart file(s) updated.
 
-🚀 Next steps:
-   1. flutter clean && flutter pub get
-   2. Review and update any remaining references manually
-   3. Update app display names in platform-specific files if needed
 ```
 
 ## Package Name Validation
@@ -119,3 +115,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
