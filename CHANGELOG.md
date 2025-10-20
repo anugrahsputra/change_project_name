@@ -1,3 +1,12 @@
+## [1.0.6] - 2025-10-20
+
+### 📚 Documentation
+
+- Update README
+
+### ⚙️ Miscellaneous Tasks
+
+- Add publisher
 ## [1.0.5] - 2025-10-05
 
 ### 📚 Documentation
