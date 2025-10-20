@@ -1,9 +1,16 @@
 name: change_project_name
-description: A CLI tool to rename Flutter/Dart projects and update all package references automatically
-version: 1.0.5
+description: >
+  A CLI tool to rename Flutter/Dart projects and update all package references automatically.
+  Simple, fast, and made for devs who hate tedious refactors.
+
+version: 1.0.6
+publisher: itsyourboiputra.is-a.dev
+
 repository: https://github.com/anugrahsputra/change_project_name
-homepage: https://github.com/anugrahsputra/change_project_name
+homepage: https://itsyourboiputra.is-a.dev
+issue_tracker: https://github.com/anugrahsputra/change_project_name/issues
 documentation: https://github.com/anugrahsputra/change_project_name#readme
+
 topics:
   - cli
   - flutter
@@ -14,7 +21,6 @@ topics:
 environment:
   sdk: ^3.9.0
 
-# Add regular dependencies here.
 dependencies:
   path: ^1.9.0
   yaml: ^3.1.3
