@@ -34,14 +34,11 @@ Future<List<File>> findDartFiles(Directory dir) async {
 /// - Returns: true if the name is valid, false otherwise.
 ///
 /// Rules:
-///   - Must start with a lowercase letter or underscore.
+///   - Must start with a lowercase letter.
 ///   - Can contain lowercase letters, numbers, and underscores.
-///   - Cannot start with an underscore.
 bool isValidPackageName(String name) {
-  // Regular expression for valid package names.
-  final regex = RegExp(r'^[a-z_][a-z0-9_]*$');
-  // Check if the name matches the regex and does not start with an underscore.
-  return regex.hasMatch(name) && !name.startsWith('_');
+  final regex = RegExp(r'^[a-z][a-z0-9_]*$');
+  return regex.hasMatch(name);
 }
 
 /// Updates the '.dart_tool/package_config.json' file to replace the old package
@@ -53,9 +50,7 @@ bool isValidPackageName(String name) {
 /// If the file does not exist, the function returns immediately.
 /// If the update is successful, the file is overwritten with the new content.
 Future<void> updatePackageConfig(String oldName, String newName) async {
-  // Reference to the package_config.json file.
   final configFile = File('.dart_tool/package_config.json');
-  // If the file does not exist, exit early.
   if (!configFile.existsSync()) return;
 
   try {
@@ -64,16 +59,12 @@ Future<void> updatePackageConfig(String oldName, String newName) async {
 
     // Check if the JSON is a map and contains the 'packages' key.
     if (jsonContent is Map && jsonContent.containsKey('packages')) {
-      // Get the list of packages from the JSON.
       final packages = jsonContent['packages'] as List<dynamic>;
-      // Flag to track if any package was updated.
       bool updated = false;
 
       // Iterate over each package entry.
       for (final pkg in packages) {
-        // Check if the entry is a map, has 'rootUri' == '../', and the old name.
         if (pkg is Map && pkg['rootUri'] == '../' && pkg['name'] == oldName) {
-          // Update the package name to the new name.
           pkg['name'] = newName;
           updated = true;
         }
@@ -85,10 +76,8 @@ Future<void> updatePackageConfig(String oldName, String newName) async {
           const JsonEncoder.withIndent('  ').convert(jsonContent),
         );
 
-        // Print a success message.
         print('✅ Updated: .dart_tool/package_config.json');
 
-        // run flutter clean and flutter pub get
         await runPubGet();
       }
     }
@@ -103,7 +92,7 @@ Future<void> runPubGet() async {
   final cleanExitCode = await runCommand(['clean']);
 
   if (cleanExitCode == 0) {
-    print('/n🚀 Running flutter pub get...');
+    print('\n🚀 Running flutter pub get...');
     await runCommand(['pub', 'get']);
   }
 }
