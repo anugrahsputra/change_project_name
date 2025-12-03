@@ -4,7 +4,7 @@ description: >
   Simple, fast, and made for devs who hate tedious refactors.
 
 version: 1.0.7
-publish_to: https://itsyourboiputra.is-a.dev
+publish_to: https://pub.dev/publishers/itsyourboiputra.is-a.dev
 
 repository: https://github.com/anugrahsputra/change_project_name
 homepage: https://itsyourboiputra.is-a.dev
