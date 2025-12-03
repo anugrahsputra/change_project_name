@@ -1,3 +1,10 @@
+## [1.0.7] - 2025-12-03
+
+### 🐛 Bug Fixes
+
+- Fix newline character typo (`/n` → `\n`) in flutter pub get output
+- Fix contradictory package name validation logic in `isValidPackageName` function
+
 ## [1.0.6] - 2025-10-20
 
 ### 📚 Documentation
