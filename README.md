@@ -8,7 +8,6 @@ A powerful CLI tool to rename Flutter/Dart projects and automatically update all
 
 - 🔄 **Automatic Renaming**: Updates project name in `pubspec.yaml`
 - 📦 **Import Updates**: Finds and updates all package imports in Dart files
-- 🛠️ **Platform Support**: Updates Android and iOS bundle identifiers
 - ✅ **Validation**: Ensures new names follow Dart package naming conventions
 - 🔍 **Dry Run**: Preview changes before applying them
 - 🎯 **Flexible Input**: Multiple ways to specify the new project name
@@ -43,14 +42,34 @@ change-project-name --interactive
 # Preview changes without applying them
 change-project-name --dry-run my_new_project
 
-# Skip platform-specific updates
-change-project-name --skip-platform my_new_project
-
 # Verbose output
 change-project-name --verbose my_new_project
 
 # Show help
 change-project-name --help
+```
+
+### Programmatic Usage
+
+You can also use the core logic in your own Dart scripts:
+
+```dart
+import 'dart:io';
+import 'package:change_project_name/change_project_name.dart';
+
+void main() async {
+  final renamer = ProjectRenamer(
+    projectDir: Directory.current,
+    isDryRun: false, // Set to true to preview changes
+    isVerbose: true,
+  );
+
+  try {
+    await renamer.rename('old_name', 'new_name');
+  } catch (e) {
+    print('Error: $e');
+  }
+}
 ```
 
 ### Command Line Options
@@ -115,4 +134,3 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-

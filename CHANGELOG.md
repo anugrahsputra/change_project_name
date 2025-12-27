@@ -1,3 +1,18 @@
+## [1.1.0] - 2025-12-27
+
+### 🚀 Features
+
+- Introduce `ProjectRenamer` class for programmatic usage.
+
+### 🚜 Refactor
+
+- Modularize codebase: Move logic to `lib/src/` and split utilities.
+- Improve CLI argument parsing and error handling.
+
+### 🧪 Tests
+
+- Add unit tests for package name validation.
+
 ## [1.0.7] - 2025-12-03
 
 ### 🐛 Bug Fixes
