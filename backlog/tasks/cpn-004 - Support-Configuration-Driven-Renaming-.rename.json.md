@@ -4,6 +4,7 @@ title: Support Configuration-Driven Renaming (.rename.json)
 status: To Do
 assignee: []
 created_date: '2026-03-04 18:43'
+updated_date: '2026-03-04 18:49'
 labels: []
 dependencies: []
 priority: low
@@ -21,3 +22,10 @@ Allow users to define renaming rules in a .rename.json file for repeatable and d
 - [ ] #2 Implement logic to read and apply renaming rules from .rename.json.
 - [ ] #3 Provide a command to generate a template .rename.json file.
 <!-- AC:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 .rename.json schema is valid and documented
+- [ ] #2 Configuration file is correctly read and overrides CLI arguments where specified
+- [ ] #3 Template generation produces a valid .rename.json file with all options documented
+<!-- DOD:END -->
