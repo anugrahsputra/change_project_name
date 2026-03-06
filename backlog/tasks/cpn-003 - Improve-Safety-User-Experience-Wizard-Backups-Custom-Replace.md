@@ -1,10 +1,10 @@
 ---
 id: CPN-003
 title: 'Improve Safety & User Experience (Wizard, Backups, Custom Replace)'
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-03-04 18:43'
-updated_date: '2026-03-06 18:36'
+updated_date: '2026-03-06 18:39'
 labels: []
 dependencies: []
 priority: medium
@@ -19,9 +19,9 @@ Improve user experience and safety by adding an interactive wizard, automatic ba
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Implement an interactive wizard mode for step-by-step renaming.
-- [ ] #2 Add automatic backup functionality for modified files.
-- [ ] #3 Support custom search and replace pairs via a CLI flag.
+- [x] #1 Implement an interactive wizard mode for step-by-step renaming.
+- [x] #2 Add automatic backup functionality for modified files.
+- [x] #3 Support custom search and replace pairs via a CLI flag.
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -70,9 +70,20 @@ Improve user experience and safety by adding an interactive wizard, automatic ba
 - **Automated Test:** Add unit tests for the backup logic and custom replacement logic in `test/change_project_name_test.dart`.
 <!-- SECTION:PLAN:END -->
 
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Implemented all features for CPN-003:
+- **Interactive Wizard**: Added a step-by-step guided mode in `bin/change_project_name.dart` that prompts for project name, app display name, and package name, with a final confirmation summary.
+- **Automatic Backups**: Implemented a robust backup mechanism in `lib/src/utils.dart` and `lib/src/renamer.dart` that copies critical files to a timestamped `.cpn_backup` directory before any modifications.
+- **Custom Search and Replace**: Added support for custom replacement pairs via the `--replace` (or `-r`) flag, allowing users to specify additional strings to be replaced across the project.
+- **Improved File Discovery**: Updated `findDartFiles` to exclude the backup directory from being processed during renames.
+- **Verification**: Added comprehensive integration tests in `test/change_project_name_test.dart` to verify backup creation and custom replacement logic. All tests passed.
+<!-- SECTION:FINAL_SUMMARY:END -->
+
 ## Definition of Done
 <!-- DOD:BEGIN -->
-- [ ] #1 Interactive wizard correctly prompts and applies choices
-- [ ] #2 Automatic backups of files are verified to be recoverable
-- [ ] #3 Custom search and replace pairs are applied correctly across project files
+- [x] #1 Interactive wizard correctly prompts and applies choices
+- [x] #2 Automatic backups of files are verified to be recoverable
+- [x] #3 Custom search and replace pairs are applied correctly across project files
 <!-- DOD:END -->
