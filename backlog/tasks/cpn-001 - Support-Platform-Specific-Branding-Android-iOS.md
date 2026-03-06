@@ -4,7 +4,7 @@ title: Support Platform-Specific Branding (Android & iOS)
 status: Done
 assignee: []
 created_date: '2026-03-04 18:43'
-updated_date: '2026-03-06 17:09'
+updated_date: '2026-03-06 17:29'
 labels: []
 dependencies: []
 priority: high
@@ -56,6 +56,18 @@ Expand the tool to support platform-specific branding by updating Android packag
 - [ ] Verify the changes using the `example` project in a controlled environment.
 
 - [x] Add unit tests for Android and iOS renaming logic.
+
+- [x] Create a mechanism to update namespace and applicationId.
+
+- [x] Update android:label in AndroidManifest.xml.
+
+- [x] Implement search and replace for package declaration.
+
+- [x] Implement directory structure renaming.
+
+- [x] Update CFBundleDisplayName and PRODUCT_BUNDLE_IDENTIFIER.
+
+- [x] Add renamePlatformSpecific to ProjectRenamer.
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -72,7 +84,7 @@ Verified implementation using the 'example' project.
 
 ## Definition of Done
 <!-- DOD:BEGIN -->
-- [ ] #1 Android package name updates correctly in AndroidManifest.xml and build.gradle
-- [ ] #2 iOS bundle identifier updates correctly in project.pbxproj and Info.plist
-- [ ] #3 Platform-specific directory renaming is verified across common folder structures
+- [x] #1 Android package name updates correctly in AndroidManifest.xml and build.gradle
+- [x] #2 iOS bundle identifier updates correctly in project.pbxproj and Info.plist
+- [x] #3 Platform-specific directory renaming is verified across common folder structures
 <!-- DOD:END -->
