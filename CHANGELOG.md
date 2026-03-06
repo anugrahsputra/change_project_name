@@ -1,94 +1,124 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## [2.0.0] - 2026-03-07
+
+### Features
+
+- **Interactive Wizard**: Added a guided, step-by-step mode for renaming projects.
+- **Automatic Backups**: Project files are now automatically backed up before any modifications.
+- **Configuration-Driven Renaming**: Support for `rename.json` and `.rename.json` configuration files for repeatable rebranding.
+- **Custom Search and Replace**: Support for user-defined string replacements across the project.
+- **Template Generation**: Added `--init` flag to generate a template configuration file.
+
+### Bug Fixes
+
+- Fixed an issue where the `--commit` flag was not negatable.
+- Improved file discovery to exclude backup directories.
+
+### Refactoring
+
+- Professionalized `CHANGELOG.md` format (removed emojis, standardized headers).
+- Updated `cliff.toml` to maintain professional changelog generation.
+
 ## [1.1.0] - 2025-12-27
 
-### 🚀 Features
+### Features
 
 - Introduce `ProjectRenamer` class for programmatic usage.
 
-### 🚜 Refactor
+### Refactoring
 
 - Modularize codebase: Move logic to `lib/src/` and split utilities.
 - Improve CLI argument parsing and error handling.
 
-### 🧪 Tests
+### Testing
 
 - Add unit tests for package name validation.
 
 ## [1.0.7] - 2025-12-03
 
-### 🐛 Bug Fixes
+### Bug Fixes
 
 - Correct newline character and package name validation logic
 
-### 📚 Documentation
+### Documentation
 
 - Update changelog
 - Update changelog for v1.0.7
+
 ## [1.0.6] - 2025-10-20
 
-### 📚 Documentation
+### Documentation
 
 - Update README
 
-### ⚙️ Miscellaneous Tasks
+### Miscellaneous
 
 - Add publisher
+
 ## [1.0.5] - 2025-10-05
 
-### 📚 Documentation
+### Documentation
 
 - Update CHANGELOG
 - Update README
 
-### ⚙️ Miscellaneous Tasks
+### Miscellaneous
 
 - Bump version
+
 ## [1.0.4] - 2025-10-04
 
-### 📚 Documentation
+### Documentation
 
-- Update cliff.toml'
+- Update cliff.toml
 
-### ⚙️ Miscellaneous Tasks
+### Miscellaneous
 
 - Bump version to 1.0.4
+
 ## [1.0.3] - 2025-09-28
 
-### 📚 Documentation
+### Documentation
 
 - Add initial CHANGELOG.md for tracking changes
 
-### ⚙️ Miscellaneous Tasks
+### Miscellaneous
 
 - Update CHANGELOG for version 1.0.2 and enhance documentation
 - Update version to 1.0.3 and enhance CHANGELOG with documentation improvements
+
 ## [1.0.2] - 2025-09-21
 
-### 🚀 Features
+### Features
 
 - Add flutter project example
 
-### 🚜 Refactor
+### Refactoring
 
 - Enhance documentation and improve argument parsing in CLI tool
 
-### 📚 Documentation
+### Documentation
 
 - Enhance changelog format and add cliff.toml configuration
 
-### ⚙️ Miscellaneous Tasks
+### Miscellaneous
 
 - Update version to 1.0.2 and enhance CHANGELOG with new features and removals
+
 ## [1.0.1] - 2025-09-06
 
-### 🚜 Refactor
+### Refactoring
 
 - Remove unnecessary code
 
-### 📚 Documentation
+### Documentation
 
 - Update documentation
 - Update
 
-### ⚙️ Miscellaneous Tasks
+### Miscellaneous
 
 - Bump version
