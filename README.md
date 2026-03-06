@@ -4,10 +4,18 @@
 
 A powerful CLI tool to rename Flutter/Dart projects and automatically update all package references, and imports.
 
+## New in Version 2.0.0
+
+- 🪄 **Interactive Wizard**: Step-by-step guidance for a complete project rename.
+- 🛡️ **Automatic Backups**: Keeps your data safe by backing up critical files before modification.
+- 📜 **Configuration-Driven**: Define your renaming rules in a `rename.json` file.
+- 🔄 **Custom Search and Replace**: Specify additional strings to be replaced across your project.
+
 ## Features
 
 - 🔄 **Automatic Renaming**: Updates project name in `pubspec.yaml`
 - 📦 **Import Updates**: Finds and updates all package imports in Dart files
+- 📱 **Branding Updates**: Updates App Display Name and Package Name/Bundle ID for Android and iOS
 - ✅ **Validation**: Ensures new names follow Dart package naming conventions
 - 🔍 **Dry Run**: Preview changes before applying them
 - 🎯 **Flexible Input**: Multiple ways to specify the new project name
@@ -26,19 +34,28 @@ dart pub global activate change_project_name
 ### Basic Usage
 
 ```bash
+# Start the interactive wizard (Recommended)
+change-project-name --interactive
+
 # Simple rename
 change-project-name my_new_project
 
 # Using --value flag
 change-project-name --value my_new_project
-
-# Interactive mode
-change-project-name --interactive
 ```
 
 ### Advanced Options
 
 ```bash
+# Use a configuration file
+change-project-name --config my_rename_config.json
+
+# Custom search and replace
+change-project-name -r "OldText:NewText" my_new_project
+
+# Disable automatic backups
+change-project-name --no-backup my_new_project
+
 # Preview changes without applying them
 change-project-name --dry-run my_new_project
 
@@ -48,6 +65,31 @@ change-project-name --verbose my_new_project
 # Show help
 change-project-name --help
 ```
+
+### Configuration File (rename.json)
+
+Generate a template configuration:
+```bash
+change-project-name --init
+```
+
+Example `rename.json`:
+```json
+{
+  "name": "new_project_name",
+  "app_name": "New App Name",
+  "package_name": "com.example.new_app",
+  "custom_replacements": {
+    "OldText": "NewText"
+  },
+  "options": {
+    "backup": true,
+    "commit": false,
+    "refresh": true
+  }
+}
+```
+The tool automatically detects `rename.json` or `.rename.json` in the current directory.
 
 ### Programmatic Usage
 
