@@ -1,13 +1,14 @@
 ---
 id: CPN-001
 title: Support Platform-Specific Branding (Android & iOS)
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-03-04 18:43'
-updated_date: '2026-03-04 18:49'
+updated_date: '2026-03-06 16:04'
 labels: []
 dependencies: []
 priority: high
+ordinal: 1000
 ---
 
 ## Description
