@@ -1,10 +1,10 @@
 ---
 id: CPN-001
 title: Support Platform-Specific Branding (Android & iOS)
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-03-04 18:43'
-updated_date: '2026-03-06 16:06'
+updated_date: '2026-03-06 17:09'
 labels: []
 dependencies: []
 priority: high
@@ -19,10 +19,10 @@ Expand the tool to support platform-specific branding by updating Android packag
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Identify and update Android package name in AndroidManifest.xml and build.gradle files.
-- [ ] #2 Rename the Kotlin/Java directory structure to match the new package name.
-- [ ] #3 Update the iOS bundle identifier in Info.plist and project.pbxproj.
-- [ ] #4 Allow updating the app display name for both Android and iOS.
+- [x] #1 Identify and update Android package name in AndroidManifest.xml and build.gradle files.
+- [x] #2 Rename the Kotlin/Java directory structure to match the new package name.
+- [x] #3 Update the iOS bundle identifier in Info.plist and project.pbxproj.
+- [x] #4 Allow updating the app display name for both Android and iOS.
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -54,7 +54,21 @@ Expand the tool to support platform-specific branding by updating Android packag
 - [ ] Add unit tests for Android package name and directory renaming.
 - [ ] Add unit tests for iOS bundle identifier and display name updates.
 - [ ] Verify the changes using the `example` project in a controlled environment.
+
+- [x] Add unit tests for Android and iOS renaming logic.
 <!-- SECTION:PLAN:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Implemented Android package name and directory renaming.
+
+Implemented iOS bundle identifier and app name updates.
+
+Updated CLI to support --package-name and --app-name options.
+
+Verified implementation using the 'example' project.
+<!-- SECTION:NOTES:END -->
 
 ## Definition of Done
 <!-- DOD:BEGIN -->
