@@ -1,14 +1,14 @@
 ---
 id: CPN-004
 title: Support Configuration-Driven Renaming (.rename.json)
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-03-04 18:43'
-updated_date: '2026-03-06 17:31'
+updated_date: '2026-03-06 18:34'
 labels: []
 dependencies: []
 priority: low
-ordinal: 3000
+ordinal: 500
 ---
 
 ## Description
