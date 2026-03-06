@@ -4,7 +4,7 @@ title: 'Improve Safety & User Experience (Wizard, Backups, Custom Replace)'
 status: Done
 assignee: []
 created_date: '2026-03-04 18:43'
-updated_date: '2026-03-06 18:39'
+updated_date: '2026-03-06 18:48'
 labels: []
 dependencies: []
 priority: medium
@@ -79,6 +79,13 @@ Implemented all features for CPN-003:
 - **Custom Search and Replace**: Added support for custom replacement pairs via the `--replace` (or `-r`) flag, allowing users to specify additional strings to be replaced across the project.
 - **Improved File Discovery**: Updated `findDartFiles` to exclude the backup directory from being processed during renames.
 - **Verification**: Added comprehensive integration tests in `test/change_project_name_test.dart` to verify backup creation and custom replacement logic. All tests passed.
+
+Thoroughly tested on `example/` project:
+- Verified dry-run with custom replacements.
+- Verified interactive wizard flow with manual input overrides.
+- Verified backup creation and content.
+- Verified custom search/replace across multiple files.
+- Fixed a bug where `--commit` flag was not negatable.
 <!-- SECTION:FINAL_SUMMARY:END -->
 
 ## Definition of Done
