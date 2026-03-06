@@ -4,10 +4,11 @@ title: Support Configuration-Driven Renaming (.rename.json)
 status: To Do
 assignee: []
 created_date: '2026-03-04 18:43'
-updated_date: '2026-03-04 18:49'
+updated_date: '2026-03-06 17:31'
 labels: []
 dependencies: []
 priority: low
+ordinal: 3000
 ---
 
 ## Description

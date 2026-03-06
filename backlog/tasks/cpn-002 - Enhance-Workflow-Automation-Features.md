@@ -1,7 +1,7 @@
 ---
 id: CPN-002
 title: Enhance Workflow & Automation Features
-status: In Progress
+status: To Do
 assignee: []
 created_date: '2026-03-04 18:43'
 updated_date: '2026-03-06 17:31'

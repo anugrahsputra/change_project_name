@@ -4,10 +4,11 @@ title: Refactor CHANGELOG.md (Remove Emojis & Professionalize)
 status: To Do
 assignee: []
 created_date: '2026-03-04 18:45'
-updated_date: '2026-03-04 18:49'
+updated_date: '2026-03-06 17:31'
 labels: []
 dependencies: []
 priority: low
+ordinal: 4000
 ---
 
 ## Description
