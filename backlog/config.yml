@@ -1,0 +1,17 @@
+project_name: "Change Project Name"
+default_status: "To Do"
+statuses: ["To Do", "In Progress", "Done"]
+labels: []
+definition_of_done: ["All code follows project style guidelines in AGENTS.md", "No sensitive information like secrets or API keys is committed or logged", "Code passes dart analyze with no errors or warnings", "All new and existing tests pass via dart test", "Public APIs are documented and follow naming conventions", "Changes are verified using the --dry-run flag where applicable"]
+date_format: yyyy-mm-dd
+max_column_width: 20
+default_editor: "vim"
+auto_open_browser: true
+default_port: 6420
+remote_operations: false
+auto_commit: true
+zero_padded_ids: 3
+bypass_git_hooks: false
+check_active_branches: false
+active_branch_days: 30
+task_prefix: "CPN"
