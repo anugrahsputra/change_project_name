@@ -1,10 +1,10 @@
 ---
 id: CPN-004
 title: Support Configuration-Driven Renaming (.rename.json)
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-03-04 18:43'
-updated_date: '2026-03-06 18:49'
+updated_date: '2026-03-06 18:51'
 labels: []
 dependencies: []
 priority: low
@@ -19,9 +19,9 @@ Allow users to define renaming rules in a .rename.json file for repeatable and d
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Define a schema for the .rename.json configuration file.
-- [ ] #2 Implement logic to read and apply renaming rules from .rename.json.
-- [ ] #3 Provide a command to generate a template .rename.json file.
+- [x] #1 Define a schema for the .rename.json configuration file.
+- [x] #2 Implement logic to read and apply renaming rules from .rename.json.
+- [x] #3 Provide a command to generate a template .rename.json file.
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -76,9 +76,21 @@ Allow users to define renaming rules in a .rename.json file for repeatable and d
     - Argument merging precedence.
 <!-- SECTION:PLAN:END -->
 
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Implemented configuration-driven renaming (CPN-004):
+- **Configuration Model**: Created `lib/src/config.dart` to handle JSON configuration files (`rename.json` or `.rename.json`).
+- **CLI Options**: Added `--config` (or `-c`) to specify a config file and `--init` to generate a template configuration.
+- **Config Merging**: Implemented logic to merge configuration values with CLI arguments, where CLI arguments take precedence.
+- **Template Generation**: Added a feature to generate a fully documented `rename.json` template.
+- **Workflow Improvement**: The tool now automatically picks up `rename.json` or `.rename.json` if they exist in the current directory, allowing for zero-argument execution.
+- **Verification**: Verified via unit tests in `test/change_project_name_test.dart` and manual testing on the `example/` project. Verified that CLI arguments correctly override config file values.
+<!-- SECTION:FINAL_SUMMARY:END -->
+
 ## Definition of Done
 <!-- DOD:BEGIN -->
-- [ ] #1 .rename.json schema is valid and documented
-- [ ] #2 Configuration file is correctly read and overrides CLI arguments where specified
-- [ ] #3 Template generation produces a valid .rename.json file with all options documented
+- [x] #1 .rename.json schema is valid and documented
+- [x] #2 Configuration file is correctly read and overrides CLI arguments where specified
+- [x] #3 Template generation produces a valid .rename.json file with all options documented
 <!-- DOD:END -->
