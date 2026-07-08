@@ -1,0 +1,14 @@
+name: Publish to pub.dev
+
+on:
+  push:
+    tags: ['v[0-9]+.[0-9]+.[0-9]+*']
+
+# Keyless publishing via OIDC — no secrets/token needed. Requires enabling
+# "Automated publishing" for this repo on pub.dev:
+#   https://pub.dev/packages/change_project_name/admin
+jobs:
+  publish:
+    permissions:
+      id-token: write
+    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
