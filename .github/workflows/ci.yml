@@ -11,7 +11,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: dart-lang/setup-dart@v1
-      - run: dart pub get
+      # --no-example: example/ is a Flutter app; skip it so no Flutter SDK is needed.
+      - run: dart pub get --no-example
       # Scoped to package dirs — example/ is a Flutter app and needs no analysis here.
       - run: dart analyze lib bin test
       - run: dart test
