@@ -39,10 +39,11 @@ class ProjectRenamer {
       '\n🔄 ${isDryRun ? 'Planning' : 'Starting'} project rename from "$oldName" to "$newName"...\n',
     );
 
+    String? backupName;
     try {
       // 0. Create backup
       if (!isDryRun && shouldBackup) {
-        final backupName = await createBackup(projectDir);
+        backupName = await createBackup(projectDir);
         print('✅ Created project backup: $backupName\n');
       }
 
@@ -86,6 +87,15 @@ class ProjectRenamer {
         print('\n💡 Run without --dry-run to make these changes');
       }
     } catch (e) {
+      if (backupName != null) {
+        print('\n⚠️  Error during rename — restoring from backup $backupName...');
+        try {
+          await restoreBackup(projectDir, backupName);
+          print('✅ Restored project from backup.');
+        } catch (restoreErr) {
+          print('❌ Restore failed: $restoreErr (backup kept at $backupName)');
+        }
+      }
       throw Exception('An error occurred during project rename: $e');
     }
   }
@@ -173,7 +183,7 @@ class ProjectRenamer {
     if (oldPackageName == null) {
       print('⚠️  Could not identify old Android package name, skipping.');
     } else {
-      final targetPackageName = newPackageName ?? 'com.example.$newName';
+      final targetPackageName = newPackageName ?? defaultAppId(newName);
       if (oldPackageName != targetPackageName) {
         print(
           '   Package name: $oldPackageName -> $targetPackageName${isDryRun ? ' (would change)' : ''}',
@@ -212,7 +222,7 @@ class ProjectRenamer {
       return;
     }
 
-    final targetBundleId = newPackageName ?? 'com.example.$newName';
+    final targetBundleId = newPackageName ?? defaultAppId(newName);
     print(
       '   Bundle ID: $targetBundleId${isDryRun ? ' (would change)' : ''}',
     );
@@ -287,7 +297,7 @@ class ProjectRenamer {
 
   Future<void> _updatePackageConfig(String oldName, String newName) async {
     if (!isDryRun) {
-      await updatePackageConfig(oldName, newName, refresh: shouldRefresh);
+      await updatePackageConfig(projectDir, oldName, newName, refresh: shouldRefresh);
     } else {
       final configFile = File(
         '${projectDir.path}/.dart_tool/package_config.json',

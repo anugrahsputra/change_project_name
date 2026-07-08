@@ -1,6 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
 
+/// Package version. Kept in sync with pubspec.yaml (asserted by CPN-VERSION test).
+const packageVersion = '2.0.0';
+
+/// Builds the default `com.example.*` application id / bundle id for [name].
+/// Underscores are stripped — iOS bundle identifiers may not contain them.
+String defaultAppId(String name) => 'com.example.${name.replaceAll('_', '')}';
+
 /// Recursively finds all Dart files in the given [dir], excluding those in
 /// 'build/' and '.dart_tool/' directories.
 Future<List<File>> findDartFiles(Directory dir) async {
@@ -81,6 +88,41 @@ Future<String> createBackup(Directory projectDir) async {
   return backupName;
 }
 
+/// Restores a project from a backup dir created by [createBackup].
+/// android/ and ios/ were full copies, so their live trees are replaced
+/// wholesale; lib/ backups hold .dart files only (rename never adds/removes
+/// them), so each is copied back over its original.
+Future<void> restoreBackup(Directory projectDir, String backupName) async {
+  final backupDir = Directory('${projectDir.path}/$backupName');
+  if (!backupDir.existsSync()) return;
+
+  final pubspec = File('${backupDir.path}/pubspec.yaml');
+  if (pubspec.existsSync()) {
+    await pubspec.copy('${projectDir.path}/pubspec.yaml');
+  }
+
+  for (final name in ['android', 'ios']) {
+    final src = Directory('${backupDir.path}/$name');
+    if (src.existsSync()) {
+      final dst = Directory('${projectDir.path}/$name');
+      if (dst.existsSync()) await dst.delete(recursive: true);
+      await copyDirectory(src, dst);
+    }
+  }
+
+  final libBackup = Directory('${backupDir.path}/lib');
+  if (libBackup.existsSync()) {
+    // Can't use findDartFiles here — it excludes .cpn_backup paths by design.
+    await for (final e in libBackup.list(recursive: true, followLinks: false)) {
+      if (e is File && e.path.endsWith('.dart')) {
+        final rel = e.path.replaceFirst(libBackup.path, '');
+        await File('${projectDir.path}/lib$rel')
+            .writeAsString(await e.readAsString());
+      }
+    }
+  }
+}
+
 /// Validates a Dart package name according to Dart package naming conventions.
 bool isValidPackageName(String name) {
   final regex = RegExp(r'^[a-z][a-z0-9_]*$');
@@ -145,11 +187,12 @@ Future<bool> createGitCommit(Directory dir, String message) async {
 
 /// Updates the '.dart_tool/package_config.json' file.
 Future<void> updatePackageConfig(
+  Directory projectDir,
   String oldName,
   String newName, {
   bool refresh = true,
 }) async {
-  final configFile = File('.dart_tool/package_config.json');
+  final configFile = File('${projectDir.path}/.dart_tool/package_config.json');
   if (!configFile.existsSync()) return;
 
   try {
@@ -372,9 +415,14 @@ Future<void> updateIOSBundleId(Directory projectDir, String bundleId) async {
       File('${projectDir.path}/ios/Runner.xcodeproj/project.pbxproj');
   if (pbxprojFile.existsSync()) {
     final content = await pbxprojFile.readAsString();
-    final updated = content.replaceAll(
+    // A stock Flutter project sets the test target to `<bundleId>.RunnerTests`.
+    // Preserve that suffix; rewrite everything else flat to the new id.
+    final updated = content.replaceAllMapped(
       RegExp(r'PRODUCT_BUNDLE_IDENTIFIER\s*=\s*[^;]+;'),
-      'PRODUCT_BUNDLE_IDENTIFIER = $bundleId;',
+      (m) {
+        final suffix = m[0]!.contains('.RunnerTests') ? '.RunnerTests' : '';
+        return 'PRODUCT_BUNDLE_IDENTIFIER = $bundleId$suffix;';
+      },
     );
     await pbxprojFile.writeAsString(updated);
     print('✅ Updated: ios/Runner.xcodeproj/project.pbxproj');

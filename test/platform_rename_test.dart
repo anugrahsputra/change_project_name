@@ -107,6 +107,21 @@ PRODUCT_BUNDLE_IDENTIFIER = com.old.bundle;
       expect(content, contains('PRODUCT_BUNDLE_IDENTIFIER = com.new.bundle;'));
     });
 
+    test('updateIOSBundleId preserves .RunnerTests suffix', () async {
+      final xcodeDir = Directory(p.join(tempDir.path, 'ios/Runner.xcodeproj'))..createSync(recursive: true);
+      final pbxprojFile = File(p.join(xcodeDir.path, 'project.pbxproj'));
+      await pbxprojFile.writeAsString('''
+PRODUCT_BUNDLE_IDENTIFIER = com.old.bundle;
+PRODUCT_BUNDLE_IDENTIFIER = com.old.bundle.RunnerTests;
+''');
+
+      await updateIOSBundleId(tempDir, 'com.new.bundle');
+
+      final content = await pbxprojFile.readAsString();
+      expect(content, contains('PRODUCT_BUNDLE_IDENTIFIER = com.new.bundle;'));
+      expect(content, contains('PRODUCT_BUNDLE_IDENTIFIER = com.new.bundle.RunnerTests;'));
+    });
+
     test('updateIOSAppName', () async {
       final runnerDir = Directory(p.join(tempDir.path, 'ios/Runner'))..createSync(recursive: true);
       final infoPlistFile = File(p.join(runnerDir.path, 'Info.plist'));

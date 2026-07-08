@@ -30,6 +30,11 @@ Future<void> main(List<String> arguments) async {
     }
   }
 
+  if (argResults['version'] as bool) {
+    print('change-project-name $packageVersion');
+    exit(0);
+  }
+
   if (argResults['help'] as bool ||
       (arguments.isEmpty && !argResults['interactive'] && config == null)) {
     _showUsage(parser);
@@ -112,7 +117,7 @@ Future<void> main(List<String> arguments) async {
     final appInput = stdin.readLineSync()?.trim();
     appName = (appInput == null || appInput.isEmpty) ? defaultAppName : appInput;
 
-    final defaultPackage = packageName ?? 'com.example.$newName';
+    final defaultPackage = packageName ?? defaultAppId(newName);
     stdout.write('✏️  Enter Package Name / Bundle ID [default: $defaultPackage]: ');
     final pkgInput = stdin.readLineSync()?.trim();
     packageName = (pkgInput == null || pkgInput.isEmpty) ? defaultPackage : pkgInput;
@@ -143,9 +148,10 @@ Future<void> main(List<String> arguments) async {
   // CLI replacements override config
   final replaceOptions = argResults['replace'] as List<String>;
   for (final option in replaceOptions) {
-    final parts = option.split(':');
-    if (parts.length == 2) {
-      customReplacements[parts[0]] = parts[1];
+    // Split on the first colon only, so values may contain colons (e.g. URLs).
+    final idx = option.indexOf(':');
+    if (idx > 0) {
+      customReplacements[option.substring(0, idx)] = option.substring(idx + 1);
     } else {
       print('⚠️  Warning: Invalid replacement format "$option". Use "old:new".');
     }
@@ -227,6 +233,11 @@ ArgParser _argParser() {
       abbr: 'h',
       negatable: false,
       help: 'Show this help message',
+    )
+    ..addFlag(
+      'version',
+      negatable: false,
+      help: 'Show the version and exit',
     )
     ..addFlag(
       'interactive',

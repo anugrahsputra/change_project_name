@@ -175,6 +175,38 @@ void main() {
       final infoPlist = await File('${tempDir.path}/ios/Runner/Info.plist').readAsString();
       expect(infoPlist, contains('New Display Name'));
     });
+
+    test('CPN-RESTORE: restoreBackup reverts changes', () async {
+      final backupName = await createBackup(tempDir);
+
+      // Simulate a botched rename.
+      await File('${tempDir.path}/pubspec.yaml').writeAsString('name: broken\n');
+      await File('${tempDir.path}/lib/main.dart').writeAsString('corrupted');
+
+      await restoreBackup(tempDir, backupName);
+
+      expect(
+        await File('${tempDir.path}/pubspec.yaml').readAsString(),
+        contains('name: old_name'),
+      );
+      expect(
+        await File('${tempDir.path}/lib/main.dart').readAsString(),
+        contains('package:old_name'),
+      );
+    });
+  });
+
+  group('meta', () {
+    test('CPN-VERSION: packageVersion matches pubspec.yaml', () async {
+      final pubspec = await File('pubspec.yaml').readAsString();
+      final match = RegExp(r'^version:\s*(\S+)', multiLine: true).firstMatch(pubspec);
+      expect(match?.group(1), equals(packageVersion));
+    });
+
+    test('defaultAppId strips underscores', () {
+      expect(defaultAppId('my_cool_app'), equals('com.example.mycoolapp'));
+      expect(defaultAppId('myapp'), equals('com.example.myapp'));
+    });
   });
 }
 
