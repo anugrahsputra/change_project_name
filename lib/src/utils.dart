@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 /// Package version. Kept in sync with pubspec.yaml (asserted by CPN-VERSION test).
-const packageVersion = '2.0.0';
+const packageVersion = '2.1.0';
 
 /// Builds the default `com.example.*` application id / bundle id for [name].
 /// Underscores are stripped — iOS bundle identifiers may not contain them.
