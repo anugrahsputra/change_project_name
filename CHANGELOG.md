@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-07-08
+
+### Added
+
+- Add --version, auto-restore on failure, bundle-id fixes
+
+
+### Changed
+
+- Refactor git-cliff configuration and regenerate CHANGELOG.md
+
 ## [2.0.0] - 2026-03-06
 
 ### Added
@@ -145,6 +156,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Update
 
+[2.1.0]: https://github.com/anugrahsputra/change_project_name/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/anugrahsputra/change_project_name/compare/v1.1.0...v2.0.0
 [1.1.0]: https://github.com/anugrahsputra/change_project_name/compare/v1.0.7...v1.1.0
 [1.0.7]: https://github.com/anugrahsputra/change_project_name/compare/v1.0.6...v1.0.7
