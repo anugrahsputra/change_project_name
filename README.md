@@ -1,3 +1,5 @@
+
+
 # Change Project Name
 
 [![pub package](https://img.shields.io/pub/v/change_project_name.svg)](https://pub.dev/packages/change_project_name)
@@ -166,7 +168,7 @@ The tool validates that new project names follow Dart package naming conventions
 
 ## Requirements
 
-- Dart SDK 2.17.0 or higher
+- Dart SDK 3.9.0 or higher
 - Must be run from a Flutter/Dart project root (directory containing `pubspec.yaml`)
 
 ## Contributing
